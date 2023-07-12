@@ -1,8 +1,25 @@
 {{page-title "Play"}}
 
-<PlayerList
-  @title="Players"
-  @players={{@model}}
-/>
+<EuiPageTemplate @grow={{true}} @pageHeader={{hash iconType='logoElastic' pageTitle='Page Title' tabs=this.tabs }}
+  @hasBottomBarBlock={{this.showing}}>
+  <:pageSideBar>
+    <EuiLoadingContent @lines={{8}} />
+  </:pageSideBar>
+  <:pageHeaderRightSideItems as |Item|>
+    <Item>
+      <EuiButton>
+        Go Full Screen
+      </EuiButton>
+    </Item>
+  </:pageHeaderRightSideItems>
+  <:default>
+  <PlayerList @title="Players" @players={{@model}} />
 
-<GameRunner />
+  <GameRunner />
+
+    <EuiLoadingContent @lines={{16}} />
+  </:default>
+  <:bottomBar>
+    Bottom bar
+  </:bottomBar>
+</EuiPageTemplate>
